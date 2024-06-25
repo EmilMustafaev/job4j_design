@@ -52,7 +52,6 @@ public class NonCollisionMap<K, V> implements SimpleMap<K, V> {
                 newTable[newIndex] = entry;
             }
         }
-
         table = newTable;
     }
 
