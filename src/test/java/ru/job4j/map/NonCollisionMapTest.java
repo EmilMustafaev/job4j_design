@@ -164,7 +164,7 @@ class NonCollisionMapTest {
     void whenPutElementWithCollisionThenReturnFalse() {
         NonCollisionMap<Integer, String> map = new NonCollisionMap<>();
         map.put(1, "one");
-        assertThat(map.put(9, "nine")).isFalse();  // Assuming 1 and 9 cause a collision
+        assertThat(map.put(9, "nine")).isFalse();
     }
 
     @Test
