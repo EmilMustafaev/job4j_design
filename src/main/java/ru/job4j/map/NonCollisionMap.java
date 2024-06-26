@@ -101,7 +101,6 @@ public class NonCollisionMap<K, V> implements SimpleMap<K, V> {
         private int expectedModCount = modCount;
 
         public NonCollisionMapIterator() {
-            findNextValidSlot();
         }
 
         @Override
@@ -109,7 +108,17 @@ public class NonCollisionMap<K, V> implements SimpleMap<K, V> {
             if (modCount != expectedModCount) {
                 throw new ConcurrentModificationException();
             }
-            return currentIndex < table.length;
+            boolean result = false;
+            int tempIndex = currentIndex + 1;
+            while (tempIndex < table.length) {
+                if (table[tempIndex] != null
+                        && (table[tempIndex].key != null
+                        || table[tempIndex].value != null)) {
+                    result = true;
+                }
+                tempIndex++;
+            }
+            return result;
         }
 
         @Override
@@ -117,38 +126,29 @@ public class NonCollisionMap<K, V> implements SimpleMap<K, V> {
             if (!hasNext()) {
                 throw new NoSuchElementException();
             }
-
-            K key = table[currentSlotIndex].key;
-            findNextValidSlot();
-
-            return key;
-        }
-
-        private void findNextValidSlot() {
             currentIndex++;
             while (currentIndex < table.length) {
-                if (table[currentIndex] != null && table[currentIndex].key != null) {
+                if (table[currentIndex] != null
+                        && (table[currentIndex].key != null
+                        || table[currentIndex].value != null)) {
                     currentSlotIndex = currentIndex;
-                    return;
-                } else if (table[currentIndex] != null && table[currentIndex].key == null && table[currentIndex].value != null) {
-                    currentSlotIndex = currentIndex;
-                    return;
+                    break;
                 }
                 currentIndex++;
             }
-            expectedModCount = modCount;
+            return table[currentSlotIndex].key;
         }
     }
 
-        private static class MapEntry<K, V> {
+    private static class MapEntry<K, V> {
 
-            K key;
-            V value;
+        K key;
+        V value;
 
-            public MapEntry(K key, V value) {
-                this.key = key;
-                this.value = value;
-            }
+        public MapEntry(K key, V value) {
+            this.key = key;
+            this.value = value;
         }
     }
+}
 
