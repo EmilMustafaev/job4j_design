@@ -34,6 +34,7 @@ public class NonCollisionMap<K, V> implements SimpleMap<K, V> {
         return result;
     }
 
+
     private int hash(int hashCode) {
         return hashCode ^ (hashCode >>> 16);
     }
