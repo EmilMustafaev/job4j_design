@@ -39,7 +39,7 @@ public class NonCollisionMap<K, V> implements SimpleMap<K, V> {
     }
 
     private int indexFor(int hash) {
-        return hash & (table.length - 1);
+        return hash & (capacity - 1);
     }
 
     private int getIndexForKey(K key) {
