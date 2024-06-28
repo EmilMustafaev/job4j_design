@@ -100,8 +100,7 @@ public class NonCollisionMap<K, V> implements SimpleMap<K, V> {
 
     private class NonCollisionMapIterator implements Iterator<K> {
 
-        private int currentIndex = -1;
-        private int currentSlotIndex = -1;
+        private int currentIndex = 0;
         private int expectedModCount = modCount;
 
         public NonCollisionMapIterator() {
@@ -112,17 +111,11 @@ public class NonCollisionMap<K, V> implements SimpleMap<K, V> {
             if (modCount != expectedModCount) {
                 throw new ConcurrentModificationException();
             }
-            boolean result = false;
-            int tempIndex = currentIndex + 1;
-            while (tempIndex < table.length) {
-                if (table[tempIndex] != null
-                        && (table[tempIndex].key != null
-                        || table[tempIndex].value != null)) {
-                    result = true;
-                }
-                tempIndex++;
+            while (currentIndex < table.length && (table[currentIndex] == null
+                    || table[currentIndex].value == null)) {
+                currentIndex++;
             }
-            return result;
+            return currentIndex < table.length;
         }
 
         @Override
@@ -130,17 +123,7 @@ public class NonCollisionMap<K, V> implements SimpleMap<K, V> {
             if (!hasNext()) {
                 throw new NoSuchElementException();
             }
-            currentIndex++;
-            while (currentIndex < table.length) {
-                if (table[currentIndex] != null
-                        && (table[currentIndex].key != null
-                        || table[currentIndex].value != null)) {
-                    currentSlotIndex = currentIndex;
-                    break;
-                }
-                currentIndex++;
-            }
-            return table[currentSlotIndex].key;
+            return table[currentIndex++].key;
         }
     }
 
