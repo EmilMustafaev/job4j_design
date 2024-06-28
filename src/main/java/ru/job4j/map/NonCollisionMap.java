@@ -111,8 +111,7 @@ public class NonCollisionMap<K, V> implements SimpleMap<K, V> {
             if (modCount != expectedModCount) {
                 throw new ConcurrentModificationException();
             }
-            while (currentIndex < table.length && (table[currentIndex] == null
-                    || table[currentIndex].value == null)) {
+            while (currentIndex < table.length && table[currentIndex] == null) {
                 currentIndex++;
             }
             return currentIndex < table.length;
