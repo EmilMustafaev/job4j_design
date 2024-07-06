@@ -14,12 +14,13 @@ class AnalysisTest {
     void unavailable(@TempDir Path tempDir) throws IOException {
         File source = tempDir.resolve("server1.log").toFile();
         try (PrintWriter writerOut = new PrintWriter(source)) {
-            writerOut.println("200 10:56:01\n" +
-                    "500 10:57:01\n" +
-                    "400 10:58:01\n" +
-                    "500 10:59:01\n" +
-                    "400 11:01:02\n" +
-                    "200 11:02:02");
+            writerOut.println("200 10:56:01\n"
+                    + "500 10:57:01\n"
+                    + "400 10:58:01\n"
+                    + "500 10:59:01\n"
+                    + "400 11:01:02\n"
+                    + "200 11:02:02");
+
         }
 
         File target = tempDir.resolve("target1.csv").toFile();
