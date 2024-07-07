@@ -8,7 +8,6 @@ public class Analysis {
              PrintWriter writer = new PrintWriter(new BufferedWriter(new FileWriter(target)))) {
             String line;
             String start = null;
-            StringBuilder result = new StringBuilder();
             while ((line = reader.readLine()) != null) {
                 String[] parts = line.split(" ");
                 String status = parts[0];
@@ -17,9 +16,7 @@ public class Analysis {
                 if (start == null && ("400".equals(status) || "500".equals(status))) {
                     start = time;
                 } else if (start != null && ("200".equals(status) || "300".equals(status))) {
-                    result.setLength(0);
-                    result.append(start).append(";").append(time).append(";");
-                    writer.println(result);
+                    writer.println(new StringBuilder().append(start).append(";").append(time).append(";"));
                     start = null;
                 }
             }
