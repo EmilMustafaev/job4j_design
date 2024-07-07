@@ -23,7 +23,7 @@ public class Config {
             while ((text = reader.readLine()) != null) {
                 if (!text.startsWith("#") && !text.isEmpty()) {
                     String[] lines = text.split("=", 2);
-                    if (lines.length != 2 || lines[0].isEmpty()) {
+                    if (lines.length != 2 || lines[0].isEmpty() || lines[1].isEmpty()) {
                         throw new IllegalArgumentException();
                     }
                     values.put(lines[0].trim(), lines[1].trim());

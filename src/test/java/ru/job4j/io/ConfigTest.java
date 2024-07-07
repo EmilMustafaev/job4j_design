@@ -39,4 +39,32 @@ class ConfigTest {
         assertThat(config.value("key1")).isEqualTo("value1=value2");
         assertThat(config.value("key2")).isEqualTo("value3=");
     }
+
+    @Test
+    void whenTheFileIsIncorrect() {
+        String path = "./data/file_incorrect_keyvalue.properties";
+        Config config = new Config(path);
+        assertThatThrownBy(config::load).isInstanceOf(IllegalArgumentException.class);
+    }
+
+    @Test
+    void whenLineStartsWithEqualsSign() {
+        String path = "./data/line_starts_with_equals.properties";
+        Config config = new Config(path);
+        assertThatThrownBy(config::load).isInstanceOf(IllegalArgumentException.class);
+    }
+
+    @Test
+    void whenLineContainsKeyWithoutValue() {
+        String path = "./data/key_without_value.properties";
+        Config config = new Config(path);
+        assertThatThrownBy(config::load).isInstanceOf(IllegalArgumentException.class);
+    }
+
+    @Test
+    void whenLineContainsOnlyEqualsSign() {
+        String path = "./data/only_equals_sign.properties";
+        Config config = new Config(path);
+        assertThatThrownBy(config::load).isInstanceOf(IllegalArgumentException.class);
+    }
 }
