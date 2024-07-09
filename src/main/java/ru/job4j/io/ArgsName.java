@@ -15,21 +15,29 @@ public class ArgsName {
     }
 
     private void parse(String[] args) {
+        validateArgs(args);
         for (String arg : args) {
-            if (!arg.contains("=")) {
-                throw new IllegalArgumentException(String.format("Error: This argument '%s' does not contain an equal sign", arg));
-            }
-            if (!arg.startsWith("-")) {
-                throw new IllegalArgumentException(String.format("Error: This argument '%s' does not start with a '-' character", arg));
-            }
             String[] keyValue = arg.substring(1).split("=", 2);
-            if (keyValue.length < 2 || keyValue[0].isEmpty()) {
-                throw new IllegalArgumentException(String.format("Error: This argument '%s' does not contain a key", arg));
-            }
-            if (keyValue[1].isEmpty()) {
-                throw new IllegalArgumentException(String.format("Error: This argument '%s' does not contain a value", arg));
-            }
             values.put(keyValue[0], keyValue[1]);
+        }
+    }
+
+
+        private void validateArgs(String[] args) {
+            for (String arg : args) {
+                if (!arg.contains("=")) {
+                    throw new IllegalArgumentException(String.format("Error: This argument '%s' does not contain an equal sign", arg));
+                }
+                if (!arg.startsWith("-")) {
+                    throw new IllegalArgumentException(String.format("Error: This argument '%s' does not start with a '-' character", arg));
+                }
+                String[] keyValue = arg.substring(1).split("=", 2);
+                if (keyValue.length < 2 || keyValue[0].isEmpty()) {
+                    throw new IllegalArgumentException(String.format("Error: This argument '%s' does not contain a key", arg));
+                }
+                if (keyValue[1].isEmpty()) {
+                    throw new IllegalArgumentException(String.format("Error: This argument '%s' does not contain a value", arg));
+                }
         }
 
 
