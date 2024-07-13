@@ -1,0 +1,10 @@
+<?xml version="1.1" encoding="UTF-8" ?>
+<student isStudent="true" course="3" name="Emil">
+    <assessments>
+        <assessment>5</assessment>
+        <assessment>4</assessment>
+        <assessment>5</assessment>
+        <assessment>3</assessment>
+    </assessments>
+    <faculty facultyName="Programmer"/>
+</student>
