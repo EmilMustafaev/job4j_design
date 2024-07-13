@@ -4,13 +4,25 @@ import java.util.Arrays;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
+import jakarta.xml.bind.annotation.*;
 
+@XmlRootElement(name = "student")
+@XmlAccessorType(XmlAccessType.FIELD)
 public class Student {
-    private final boolean isStudent;
-    private final int course;
-    private final String name;
-    private final String[] assessments;
-    private final Faculty faculty;
+    @XmlAttribute
+    private boolean isStudent;
+    @XmlAttribute
+    private int course;
+    @XmlAttribute
+    private String name;
+    @XmlElementWrapper
+    @XmlElement(name = "assessment")
+    private String[] assessments;
+    @XmlElement
+    private Faculty faculty;
+
+
+    public Student() { };
 
     public Student(boolean isStudent, int course, String name, String[] assessments, Faculty faculty) {
         this.isStudent = isStudent;
@@ -35,37 +47,6 @@ public class Student {
                 ", faculty=" + faculty
                 +
                 '}';
-    }
-
-    public static void main(String[] args) {
-
-        Student student = new Student(true, 3, "Emil",
-                new String[]{"5, 4, 5, 3"}, new Faculty("Programmer"));
-
-        final Gson gson = new GsonBuilder().create();
-        System.out.println(gson.toJson(student));
-
-        final String studentJson =
-                "{"
-                        +
-                        "\"isStudent\": true,"
-                        +
-                        "\"course\": 3,"
-                        +
-                        "\"name\": \"Emil\","
-                        +
-                        "\"assessments\": [\"5, 4, 5, 3\"],"
-                        +
-                        "\"faculty\": {"
-                        +
-                        "\"facultyName\": \"Programmer\""
-                        +
-                        "}"
-                        +
-                        "}";
-
-        final Student studentMod = gson.fromJson(studentJson, Student.class);
-        System.out.println(studentMod);
     }
 
 }
