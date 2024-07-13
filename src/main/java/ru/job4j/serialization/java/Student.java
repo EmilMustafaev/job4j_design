@@ -2,9 +2,9 @@ package ru.job4j.serialization.java;
 
 import java.util.Arrays;
 
-import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
 import jakarta.xml.bind.annotation.*;
+import org.json.JSONObject;
+import org.json.JSONPropertyIgnore;
 
 @XmlRootElement(name = "student")
 @XmlAccessorType(XmlAccessType.FIELD)
@@ -49,4 +49,38 @@ public class Student {
                 '}';
     }
 
+    public boolean getIsStudent() {
+        return isStudent;
+    }
+
+    public int getCourse() {
+        return course;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public String[] getAssessments() {
+        return assessments;
+    }
+
+     @JSONPropertyIgnore
+    public Faculty getFaculty() {
+        return faculty;
+    }
+
+    public void setFaculty(Faculty faculty) {
+        this.faculty = faculty;
+    }
+
+    public static void main(String[] args) {
+        Student student = new Student(true, 3, "Emil",
+                new String[]{"5, 4, 5, 3"}, new Faculty("Programmer"));
+        Faculty faculty = new Faculty("Programmer");
+        student.setFaculty(faculty);
+        faculty.setStudent(student);
+
+        System.out.println(new JSONObject(student));
+    }
 }

@@ -1,35 +1,33 @@
 package ru.job4j.serialization.java;
 
-import jakarta.xml.bind.JAXBContext;
-import jakarta.xml.bind.Marshaller;
-import jakarta.xml.bind.Unmarshaller;
+import org.json.JSONArray;
+import org.json.JSONObject;
 
-import java.io.StringReader;
-import java.io.StringWriter;
+import java.util.ArrayList;
+import java.util.List;
 
 public class Main {
     public static void main(String[] args) throws Exception {
         Student student = new Student(true, 3, "Emil",
                 new String[]{"5, 4, 5, 3"}, new Faculty("Programmer"));
 
-        JAXBContext context = JAXBContext.newInstance(Student.class);
+        JSONObject jsonFaculty = new JSONObject("{\"facultyName\":\"Programmer\"}");
 
-        Marshaller marshaller = context.createMarshaller();
+        List<String> list = new ArrayList<>();
+        list.add("5");
+        list.add("4");
+        JSONArray jsonAssessments = new JSONArray(list);
 
-        marshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, Boolean.TRUE);
-        String xml = "";
-        try (StringWriter writer = new StringWriter()) {
 
-            marshaller.marshal(student, writer);
-            xml = writer.getBuffer().toString();
-            System.out.println(xml);
-        }
+        JSONObject jsonObject = new JSONObject();
+        jsonObject.put("isStudent", student.getIsStudent());
+        jsonObject.put("course", student.getCourse());
+        jsonObject.put("name", student.getName());
+        jsonObject.put("assessments", jsonAssessments);
+        jsonObject.put("faculty", jsonFaculty);
 
-        Unmarshaller unmarshaller = context.createUnmarshaller();
-        try (StringReader reader = new StringReader(xml)) {
+        System.out.println(jsonObject.toString());
 
-            Student result = (Student) unmarshaller.unmarshal(reader);
-            System.out.println(result);
-        }
+        System.out.println(new JSONObject(student).toString());
     }
 }
