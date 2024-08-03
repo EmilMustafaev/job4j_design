@@ -81,7 +81,6 @@ public class TableEditor implements AutoCloseable {
     }
 
 
-
     @Override
     public void close() throws Exception {
         if (connection != null) {
