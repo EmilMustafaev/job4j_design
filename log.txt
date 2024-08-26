@@ -1,3 +1,11 @@
-[0.059s][info][gc] Using The Z Garbage Collector
-[63.390s][info][gc] GC(0) Garbage Collection (Warmup) 62M(12%)->28M(5%)
-[358.385s][info][gc] GC(1) Garbage Collection (Warmup) 104M(20%)->28M(5%)
+[0.022s][info][gc] Using Serial
+[3.070s][info][gc] GC(0) Pause Young (Allocation Failure) 4M->2M(15M) 6.010ms
+[3.251s][info][gc] GC(1) Pause Young (Allocation Failure) 6M->2M(15M) 7.045ms
+[3.364s][info][gc] GC(2) Pause Young (Allocation Failure) 7M->4M(15M) 6.444ms
+[3.444s][info][gc] GC(3) Pause Young (Allocation Failure) 8M->4M(15M) 4.805ms
+[3.932s][info][gc] GC(4) Pause Young (Allocation Failure) 8M->5M(15M) 4.802ms
+[4.296s][info][gc] GC(5) Pause Young (Allocation Failure) 9M->6M(15M) 6.319ms
+[31.390s][info][gc] GC(6) Pause Young (Allocation Failure) 10M->6M(15M) 3.084ms
+[72.052s][info][gc] GC(7) Pause Young (Allocation Failure) 10M->6M(15M) 1.673ms
+[118.517s][info][gc] GC(8) Pause Young (Allocation Failure) 10M->6M(15M) 1.557ms
+[165.557s][info][gc] GC(9) Pause Young (Allocation Failure) 10M->6M(15M) 1.014ms
