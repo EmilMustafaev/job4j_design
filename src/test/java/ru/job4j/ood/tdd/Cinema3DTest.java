@@ -9,7 +9,6 @@ import java.util.Calendar;
 import java.util.List;
 
 public class Cinema3DTest {
-
     @Test
     public void whenBuyThenGetTicket() {
         Account account = new AccountCinema();
