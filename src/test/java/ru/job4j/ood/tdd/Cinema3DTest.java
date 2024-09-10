@@ -49,6 +49,7 @@ public class Cinema3DTest {
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
+
     @Test
     public void whenBuyOnInvalidDateThenGetException() {
         Account account = new AccountCinema();
