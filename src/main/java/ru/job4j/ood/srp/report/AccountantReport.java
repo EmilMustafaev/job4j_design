@@ -13,6 +13,7 @@ public class AccountantReport implements Report {
     private final CurrencyConverter converter;
     private final Currency targetCurrency;
 
+
     public AccountantReport(Store store, CurrencyConverter converter, Currency targetCurrency) {
         this.store = store;
         this.converter = converter;

@@ -11,6 +11,7 @@ public class HrReport implements Report {
         this.store = store;
     }
 
+
     @Override
     public String generate(Predicate<Employee> filter) {
         StringBuilder text = new StringBuilder();

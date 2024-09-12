@@ -19,6 +19,7 @@ public class CsvReportTest {
         Report engine = new CsvReport(store, new ReportDateTimeParser());
         store.add(worker);
 
+
         StringBuilder expected = new StringBuilder();
         expected.append("Name,Hired,Fired,Salary").append(System.lineSeparator())
                 .append("Ivan,")

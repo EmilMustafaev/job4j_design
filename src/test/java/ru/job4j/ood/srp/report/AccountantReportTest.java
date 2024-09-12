@@ -19,6 +19,7 @@ public class AccountantReportTest {
         store.add(new Employee("Ivan", Calendar.getInstance(), Calendar.getInstance(), 100));
         Report accountantReport = new AccountantReport(store, converter, Currency.USD);
 
+
         String expected = "Name; Salary in USD; Ivan; 1,62;";
         assertThat(accountantReport.generate(employee -> true)).isEqualTo(expected);
     }

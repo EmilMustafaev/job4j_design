@@ -16,6 +16,7 @@ public class HrReportTest {
         store.add(new Employee("Petr", Calendar.getInstance(), Calendar.getInstance(), 200));
         Report hrReport = new HrReport(store);
 
+
         String expected = " Name; Salary; Petr: 200.0; Ivan: 100.0; ";
         assertThat(hrReport.generate(employee -> true)).isEqualTo(expected);
     }
