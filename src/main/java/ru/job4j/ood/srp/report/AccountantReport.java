@@ -27,7 +27,7 @@ public class AccountantReport implements Report {
         for (Employee employee : store.findBy(filter)) {
             double convertedSalary = converter.convert(Currency.RUB, employee.getSalary(), targetCurrency);
             text.append(employee.getName()).append("; ")
-                    .append(String.format("%.2f", convertedSalary)).append(";");
+                    .append(String.format(Locale.US, "%.2f", convertedSalary)).append(";");
         }
         return text.toString();
     }

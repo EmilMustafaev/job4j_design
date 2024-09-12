@@ -20,7 +20,7 @@ public class AccountantReportTest {
         Report accountantReport = new AccountantReport(store, converter, Currency.USD);
 
 
-        String expected = "Name; Salary in USD; Ivan; 1,62;";
+        String expected = "Name; Salary in USD; Ivan; 1.62;";
         assertThat(accountantReport.generate(employee -> true)).isEqualTo(expected);
     }
 }

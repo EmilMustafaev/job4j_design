@@ -12,7 +12,6 @@ public class CsvReport implements Report {
     private final Store store;
     private final DateTimeParser<Calendar> dateTimeParser;
 
-
     public CsvReport(Store store, DateTimeParser<Calendar> dateTimeParser) {
         this.store = store;
         this.dateTimeParser = dateTimeParser;
