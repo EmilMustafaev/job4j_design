@@ -1,32 +1,31 @@
 package ru.job4j.ood.srp.model;
 
-import jakarta.xml.bind.annotation.XmlAccessType;
-import jakarta.xml.bind.annotation.XmlAccessorType;
-import jakarta.xml.bind.annotation.XmlElement;
-import jakarta.xml.bind.annotation.XmlType;
-import jakarta.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
-import ru.job4j.ood.srp.formatter.DateAdapter;
+import com.google.gson.annotations.Expose;
 
-
+import javax.xml.bind.annotation.*;
 import java.util.Calendar;
 import java.util.Objects;
+
+@XmlRootElement(name = "employee")
 @XmlAccessorType(XmlAccessType.FIELD)
-@XmlType(propOrder = {"name", "hired", "fired", "salary"})
+@XmlType(propOrder = {"name", "hiredString", "firedString", "salary"})
 public class Employee {
-
     @XmlElement
+    @Expose
     private String name;
-
-    @XmlElement
-    @XmlJavaTypeAdapter(DateAdapter.class)
+    @XmlTransient
     private Calendar hired;
-
-    @XmlElement
-    @XmlJavaTypeAdapter(DateAdapter.class)
+    @XmlTransient
     private Calendar fired;
-
     @XmlElement
+    @Expose
     private double salary;
+    @XmlElement(name = "hired")
+    @Expose
+    private String hiredString;
+    @XmlElement(name =  "fired")
+    @Expose
+    private String firedString;
 
     public Employee() {
     }
@@ -37,53 +36,69 @@ public class Employee {
         this.fired = fired;
         this.salary = salary;
     }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public Calendar getHired() {
-        return hired;
-    }
-
-    public void setHired(Calendar hired) {
-        this.hired = hired;
-    }
-
-    public Calendar getFired() {
-        return fired;
-    }
-
-    public void setFired(Calendar fired) {
-        this.fired = fired;
-    }
-
-    public double getSalary() {
-        return salary;
-    }
-
-    public void setSalary(double salary) {
-        this.salary = salary;
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) {
-            return true;
+        public String getName() {
+            return name;
         }
-        if (o == null || getClass() != o.getClass()) {
-            return false;
-        }
-        Employee employee = (Employee) o;
-        return Objects.equals(name, employee.name);
-    }
 
-    @Override
-    public int hashCode() {
-        return Objects.hash(name);
+
+        public Calendar getHired() {
+            return hired;
+        }
+
+
+        public Calendar getFired() {
+            return fired;
+        }
+
+
+        public double getSalary() {
+            return salary;
+        }
+
+        public String getHiredString() {
+            return hiredString;
+        }
+
+        public void setHiredString(String hiredString) {
+            this.hiredString = hiredString;
+        }
+
+        public String getFiredString() {
+            return firedString;
+        }
+
+        public void setFiredString(String firedString) {
+            this.firedString = firedString;
+        }
+
+        public void setName(String name) {
+            this.name = name;
+        }
+
+        public void setHired(Calendar hired) {
+            this.hired = hired;
+        }
+
+        public void setFired(Calendar fired) {
+            this.fired = fired;
+        }
+
+        public void setSalary(double salary) {
+            this.salary = salary;
+        }
+        @Override
+        public boolean equals(Object o) {
+            if (this == o) {
+                return true;
+            }
+            if (o == null || getClass() != o.getClass()) {
+                return false;
+            }
+            Employee employee = (Employee) o;
+            return Objects.equals(name, employee.name);
+        }
+        @Override
+        public int hashCode() {
+            return Objects.hash(name);
+        }
     }
-}

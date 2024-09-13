@@ -9,7 +9,7 @@ import javax.xml.bind.JAXBException;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
 import static org.assertj.core.api.Assertions.assertThat;
-@Disabled
+
 class XmlReportEngineTest {
     @Test
     void whenGenerated() throws JAXBException {
