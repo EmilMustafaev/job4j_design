@@ -44,4 +44,5 @@ class XmlReportEngineTest {
                 """;
         assertThat(engine.generate(em -> true)).isEqualTo(expected);
     }
+
 }

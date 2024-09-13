@@ -18,10 +18,12 @@ public class XmlReportEngine implements Report {
 
     private final MemoryStore memoryStore;
     private final DateTimeParser<Calendar> dateTimeParser;
+    private final JAXBContext context;
 
-    public XmlReportEngine(MemoryStore memoryStore) {
+    public XmlReportEngine(MemoryStore memoryStore) throws JAXBException {
         this.memoryStore = memoryStore;
         this.dateTimeParser = new ReportDateTimeParser();
+        this.context = JAXBContext.newInstance(Employees.class);
     }
 
     @Override
@@ -33,7 +35,6 @@ public class XmlReportEngine implements Report {
         });
         Employees employeesWrapper = new Employees(employees);
         try {
-            JAXBContext context = JAXBContext.newInstance(Employees.class);
             Marshaller marshaller = context.createMarshaller();
             marshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, Boolean.TRUE);
             StringWriter writer = new StringWriter();
