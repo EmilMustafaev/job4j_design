@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.ArrayList;
 
 public class ParkingLotImpl implements ParkingLot {
+
     private List<ParkingSpot> carSpots;
     private List<ParkingSpot> truckSpots;
 

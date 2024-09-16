@@ -23,21 +23,21 @@ class ParkingLotImplTest {
 
     @Test
     void whenParkCarThenTrue() {
-        ParkingLot parkingLot = new ParkingLotImpl(1,0);
+        ParkingLot parkingLot = new ParkingLotImpl(1, 0);
         Vehicle car = new Car();
         assertTrue(parkingLot.park(car));
     }
 
     @Test
     void whenParkTrackThenTrue() {
-        ParkingLot parkingLot = new ParkingLotImpl(0,1);
+        ParkingLot parkingLot = new ParkingLotImpl(0, 1);
         Vehicle track = new Track(3);
         assertTrue(parkingLot.park(track));
     }
 
     @Test
     void whenParkTrackForCarSpotThenTrue() {
-        ParkingLot parkingLot = new ParkingLotImpl(3,0);
+        ParkingLot parkingLot = new ParkingLotImpl(3, 0);
         Vehicle track = new Track(3);
         assertTrue(parkingLot.park(track));
     }
