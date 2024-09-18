@@ -22,6 +22,18 @@ public class Food {
         return name;
     }
 
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public void setExpiryDate(LocalDate expiryDate) {
+        this.expiryDate = expiryDate;
+    }
+
+    public void setCreateDate(LocalDate createDate) {
+        this.createDate = createDate;
+    }
+
     public LocalDate getExpiryDate() {
         return expiryDate;
     }

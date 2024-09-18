@@ -52,4 +52,32 @@ public class ControlQualityTest {
         control.distribute(food);
         assertTrue(trash.getFoods().contains(food));
     }
+
+    @Test
+    public void whenResortThenReDistributeAllFoods() {
+        Food food1 = new Food("Milk", LocalDate.now().minusDays(1), LocalDate.now().plusDays(10), 100, 0.2);
+        Food food2 = new Food("Cheese", LocalDate.now().minusDays(50), LocalDate.now().plusDays(25), 200, 0.2);
+        Food food3 = new Food("Bread", LocalDate.now().minusDays(100), LocalDate.now().minusDays(1), 50, 0.1);
+
+        Warehouse warehouse = new Warehouse();
+        Shop shop = new Shop();
+        Trash trash = new Trash();
+        ControlQuality control = new ControlQuality(Arrays.asList(warehouse, shop, trash));
+
+        control.distribute(food1);
+        control.distribute(food2);
+        control.distribute(food3);
+
+        assertTrue(warehouse.getFoods().contains(food1));
+        assertTrue(shop.getFoods().contains(food2));
+        assertTrue(trash.getFoods().contains(food3));
+
+        food1.setCreateDate(LocalDate.now().minusDays(30));
+        food2.setExpiryDate(LocalDate.now().minusDays(1));
+
+        control.resort();
+
+        assertTrue(shop.getFoods().contains(food1));
+        assertTrue(trash.getFoods().contains(food2));
+    }
 }
