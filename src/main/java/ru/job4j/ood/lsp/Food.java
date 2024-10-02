@@ -8,7 +8,9 @@ public class Food {
     private LocalDate createDate;
     private double price;
     private double discount;
-
+    /*
+    Вношу какие то изменения
+     */
 
     public Food(String name, LocalDate createDate, LocalDate expiryDate, double price, double discount) {
         this.name = name;
